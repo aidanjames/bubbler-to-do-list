@@ -1,0 +1,26 @@
+.bubble-image {
+    opacity: 0.5;
+    width: 2.5em;
+}
+
+.bubble-bullet {
+    opacity: 0.5;
+    width: 1.5em;
+}
+
+.ajp-form {
+    width: 250px;
+}
+
+.control-label {
+    display: none;
+}
+
+.bubbles-container {
+    padding-top: 20px;
+}
+
+ul {
+    list-style-type: none;
+}
+

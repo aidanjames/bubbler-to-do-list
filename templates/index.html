@@ -1,0 +1,123 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}Bubbler{% endblock %}
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="/static/css/styles.css">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+  <a href="{{ url_for('home') }}">
+    <h1>Bubbler<img class="bubble-image" src="/static/images/bubble.png"></h1>
+  </a>
+
+  <hr>
+  <div class="ajp-form">
+    <h3>Add new bubble</h3>
+    {{ wtf.quick_form(form, novalidate=True) }}
+  </div>
+
+  <hr>
+  <h3>Active bubbles | <a href="{{ url_for('popped') }}">View popped bubbles</a></h3>
+
+  <div class="bubbles-container">
+
+    <h4>Due today</h4>
+
+    {% if bubbles_today %}
+
+    {% for bubble in bubbles_today %}
+    <ul class="list-group">
+      <li class="list-group-item">
+
+        <h4>
+          <img class="bubble-bullet" src="/static/images/bubble.png">
+          {{ bubble.description }}
+          <a href="{{ url_for('pop', id=bubble.id) }}">Pop bubble</a>
+        </h4>
+      </li>
+    </ul>
+
+    {% endfor %}
+
+    {% else %}
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h4>Nothing more to do 😊</h4>
+      </li>
+
+    </ul>
+
+    {% endif %}
+
+
+    <h4>Due this week</h4>
+
+    {% if bubbles_this_week %}
+
+    {% for bubble in bubbles_this_week %}
+    <ul class="list-group">
+      <li class="list-group-item">
+
+        <h4>
+          <img class="bubble-bullet" src="/static/images/bubble.png">
+          {{ bubble.description }}
+          <a href="{{ url_for('pop', id=bubble.id) }}">Pop bubble</a>
+        </h4>
+      </li>
+    </ul>
+
+    {% endfor %}
+
+    {% else %}
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h4>Nothing more to do 😊</h4>
+      </li>
+
+    </ul>
+
+    {% endif %}
+
+    <h4>Due later(ish)</h4>
+
+    {% if bubbles_later %}
+
+    {% for bubble in bubbles_later %}
+    <ul class="list-group">
+      <li class="list-group-item">
+
+        <h4>
+          <img class="bubble-bullet" src="/static/images/bubble.png">
+          {{ bubble.description }}
+          <a href="{{ url_for('pop', id=bubble.id) }}">Pop bubble</a>
+        </h4>
+      </li>
+    </ul>
+
+    {% endfor %}
+
+    {% else %}
+
+    <ul class="list-group">
+      <li class="list-group-item">
+        <h4>Nothing more to do 😊</h4>
+      </li>
+
+    </ul>
+
+    {% endif %}
+
+
+  </div>
+
+
+</div>
+
+{% endblock %}
+
